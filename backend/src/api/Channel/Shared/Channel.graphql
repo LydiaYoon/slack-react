@@ -1,0 +1,9 @@
+# Channel에 대한 타입 정의
+
+type Channel {
+  id: Int!
+  channelName: String!
+  messages: [Message]
+  createdAt: String!
+  updatedAt: String
+}
