@@ -1,0 +1,10 @@
+# GraphQL 함수에 대한 정의
+type GetMessagesResponse {
+  ok: Boolean!
+  error: String
+  messages: [Message]
+}
+
+type Query {
+  GetMessages(innerChannelId: Int!): GetMessagesResponse!
+}

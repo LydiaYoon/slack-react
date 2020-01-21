@@ -1,11 +1,11 @@
-# Message에 대한 타입 정의
+# GraphQL Message 모델 에 대한 타입 정의
 
 type Message {
-id: Int!
-nickname: String!
-contents: String!
-innerChannel: Channel!
-innerChannelId: Int!
-createdAt: String!
-updatedAt: String
+  id: Int!
+  nickname: String!
+  contents: String!
+  innerChannel: Channel!
+  innerChannelId: Int!
+  createdAt: String!
+  updatedAt: String
 }
