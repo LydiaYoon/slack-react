@@ -1,7 +1,7 @@
 import { Resolvers } from "src/types/resolvers";
 import { SendMessageMutationArgs, SendMessageResponse } from "src/types/graphql";
-import Channel from "src/entities/Channel";
-import Message from "src/entities/Message";
+import Channel from "../../../../src/entities/Channel";
+import Message from "../../../../src/entities/Message";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -31,7 +31,6 @@ const resolvers: Resolvers = {
           ok: true,
           error: null
         }
-
       } catch (error) {
         return {
           ok: false,
