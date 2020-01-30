@@ -1,10 +1,10 @@
 import { Resolvers } from "src/types/resolvers";
-import { CreateChannelMutaionArgs, CreateChannelResponse } from "../../../../src/types/graphql"
-import Channel from "../../../../src/entities/Channel";
+import { CreateChannelMutationArgs, CreateChannelResponse } from "../../../types/graphql"
+import Channel from "../../../entities/Channel";
 
 const resolvers: Resolvers = {
   Mutation: {
-    CreateChannel: async(_, args: CreateChannelMutaionArgs): Promise<CreateChannelResponse> => {
+    CreateChannel: async(_, args: CreateChannelMutationArgs): Promise<CreateChannelResponse> => {
       try {
         const { channelName } = args;
         const existChannel = await Channel.findOne({channelName});
@@ -32,8 +32,8 @@ const resolvers: Resolvers = {
         }
       } // try-catch
 
-    }// CreateChannel
-  }// Mutation
+    } // CreateChannel
+  } // Mutation
 };
 
 export default resolvers;
