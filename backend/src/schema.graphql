@@ -10,6 +10,17 @@ type Mutation {
   SendMessage(nickname: String!, contents: String!, thumbnail: String!, innerChannelId: Int!): SendMessageResponse!
 }
 
+type GetChannelsResponse {
+  ok: Boolean!
+  error: String
+  channels: [Channel]
+}
+
+type Query {
+  GetChannels: GetChannelsResponse!
+  GetMessages(innerChannelId: Int!): GetMessagesResponse!
+}
+
 type ModifyChannelResponse {
   ok: Boolean!
   error: String
@@ -29,10 +40,6 @@ type GetMessagesResponse {
   ok: Boolean!
   error: String
   messages: [Message]
-}
-
-type Query {
-  GetMessages(innerChannelId: Int!): GetMessagesResponse!
 }
 
 type ModifyMessageResponse {

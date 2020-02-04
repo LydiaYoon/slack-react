@@ -4,11 +4,11 @@ import Channel from "../../../entities/Channel";
 
 const resolvers: Resolvers = {
   Mutation: {
-    CreateChannel: async(_, args: CreateChannelMutationArgs): Promise<CreateChannelResponse> => {
+    CreateChannel: async (_, args: CreateChannelMutationArgs, { pubSub }): Promise<CreateChannelResponse> => {
       try {
         const { channelName } = args;
-        const existChannel = await Channel.findOne({channelName});
-        
+        const existChannel = await Channel.findOne({ channelName });
+
         if (existChannel) {
           return {
             ok: false,
@@ -16,10 +16,14 @@ const resolvers: Resolvers = {
           }
         }
 
-        await Channel.create({
+        const newChannel = await Channel.create({
           channelName
         }).save();
         // typeORM 규칙상 create를 한 후에는 반드시 save를 한다.
+
+        pubSub.publish("newChannel", {
+          CreateChannelSubscription: newChannel
+        });
 
         return {
           ok: true,

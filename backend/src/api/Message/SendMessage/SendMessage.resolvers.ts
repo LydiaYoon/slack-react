@@ -5,11 +5,11 @@ import Message from "../../../../src/entities/Message";
 
 const resolvers: Resolvers = {
   Mutation: {
-    SendMessage: async(_, args: SendMessageMutationArgs): Promise<SendMessageResponse> => {
+    SendMessage: async (_, args: SendMessageMutationArgs, { pubSub }): Promise<SendMessageResponse> => {
 
       try {
         const { nickname, contents, thumbnail, innerChannelId } = args;
-        const isExistChannel = await Channel.findOne({id: innerChannelId});
+        const isExistChannel = await Channel.findOne({ id: innerChannelId });
         // Channel : TypeORM으로 끌어온 엔티티
         // fineOne : DB의 SELECT
         if (!isExistChannel) {
@@ -19,7 +19,7 @@ const resolvers: Resolvers = {
           }
         }
 
-        await Message.create({
+        const newMessage = await Message.create({
           nickname,
           contents,
           thumbnail,
@@ -27,6 +27,10 @@ const resolvers: Resolvers = {
         }).save();
         // create : DB의 INSERT
 
+        pubSub.publish("newMessage", {
+          sendMessageSubscription: newMessage
+        })
+        
         return {
           ok: true,
           error: null
