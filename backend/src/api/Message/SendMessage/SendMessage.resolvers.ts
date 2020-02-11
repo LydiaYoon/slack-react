@@ -28,7 +28,7 @@ const resolvers: Resolvers = {
         // create : DB의 INSERT
 
         pubSub.publish("newMessage", {
-          sendMessageSubscription: newMessage
+          SendMessageSubscription: newMessage
         })
         
         return {
