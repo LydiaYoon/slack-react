@@ -18,6 +18,8 @@ const Counter = () => {
   const [number, setNumber] = useState(1);
 
   // 리렌더링 할 때 useEffect안의 내용이 실행됨
+  // , [] : 맨 처음 렌더링 시에만 실행
+  // , [number] : [] 안의 number가 변경될 때에만 실행
   useEffect(
     () => {
       console.log("rendering... :0)", number);
