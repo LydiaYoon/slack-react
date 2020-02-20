@@ -6,7 +6,7 @@ const ChannelList = () => {
     <MainFrame>
       <Title>Slack with GraphQL</Title>
       <SubTitle>참여 가능 채널 목록</SubTitle>
-      <Channel isActive={true}># blah-blah</Channel>
+      <Channel isActive={true}># 흥청망청</Channel>
       <Channel># frontend</Channel>
       <Channel># backend</Channel>
 
@@ -20,7 +20,7 @@ const ChannelList = () => {
 
 const MainFrame = styled.div`
   position: relative;
-  width: 250px;
+  min-width: 250px;
   height: 100%;
   padding: 15px 15px 15px 15px;
   background: #4d394b;
